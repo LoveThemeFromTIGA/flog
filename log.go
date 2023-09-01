@@ -22,7 +22,8 @@ const (
 	// CommonLogFormat : {host} {user-identifier} {auth-user-id} [{datetime}] "{method} {request} {protocol}" {response-code} {bytes}
 	CommonLogFormat = "%s - %s [%s] \"%s %s %s\" %d %d"
 	// JSONLogFormat : {"host": "{host}", "user-identifier": "{user-identifier}", "datetime": "{datetime}", "method": "{method}", "request": "{request}", "protocol": "{protocol}", "status", {status}, "bytes": {bytes}, "referer": "{referer}"}
-	JSONLogFormat = `{"host":"%s", "user-identifier":"%s", "datetime":"%s", "method": "%s", "request": "%s", "protocol":"%s", "status":%d, "bytes":%d, "referer": "%s"}`
+	// JSONLogFormat = `{"host":"%s", "user-identifier":"%s", "datetime":"%s", "method": "%s", "request": "%s", "protocol":"%s", "status":%d, "bytes":%d, "referer": "%s"}`
+	JSONLogFormat = `{"@timestamp":"%s", "clientip":"%s", "request_method":"%s", "domain": "%s", "referer": "%s", "request":"%s", "size":%d, "status":%d, "upstreamtime": "%.3f", "upstreamaddr": "%s", "http_user_agent": "%s"}`
 )
 
 // NewApacheCommonLog creates a log string with apache common log format
@@ -117,17 +118,35 @@ func NewCommonLogFormat(t time.Time) string {
 }
 
 // NewJSONLogFormat creates a log string with json log format
+// func NewJSONLogFormat(t time.Time) string {
+// 	return fmt.Sprintf(
+// 		JSONLogFormat,
+// 		gofakeit.IPv4Address(),
+// 		RandAuthUserID(),
+// 		t.Format(CommonLog),
+// 		gofakeit.HTTPMethod(),
+// 		RandResourceURI(),
+// 		RandHTTPVersion(),
+// 		gofakeit.StatusCode(),
+// 		gofakeit.Number(0, 30000),
+// 		gofakeit.URL(),
+// 	)
+// }
+
+// NewJSONLogFormat creates a log string with json log format
 func NewJSONLogFormat(t time.Time) string {
 	return fmt.Sprintf(
 		JSONLogFormat,
+		t.Format(RFC5424),
 		gofakeit.IPv4Address(),
-		RandAuthUserID(),
-		t.Format(CommonLog),
 		gofakeit.HTTPMethod(),
-		RandResourceURI(),
-		RandHTTPVersion(),
-		gofakeit.StatusCode(),
-		gofakeit.Number(0, 30000),
+		gofakeit.DomainName(),
 		gofakeit.URL(),
+		RandResourceURI(),
+		gofakeit.Number(0, 30000),
+		gofakeit.StatusCode(),
+		gofakeit.RandMillisecond(1, 200),
+		gofakeit.IPv4LanAddress()+":8080",
+		RandAuthUserID(),
 	)
 }
