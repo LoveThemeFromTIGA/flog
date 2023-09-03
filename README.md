@@ -13,26 +13,19 @@ It is useful for testing some tasks which require log data like amazon kinesis l
 ### Using go get
 
 ```bash
-go get -u github.com/mingrammer/flog
+go get -u github.com/LoveThemeFromTIGA/flog
 ```
 
 It is recommended to also run `dep ensure` to make sure that the dependencies are in the correct versions.
 
-### Using [homebrew](https://brew.sh)
-
-```
-brew tap mingrammer/flog
-brew install flog
-```
-
 ### Using .tar.gz archive
 
-Download gzip file from [Github Releases](https://github.com/mingrammer/flog/releases/latest) according to your OS. Then, copy the unzipped executable to under system path.
+Download gzip file from [Github Releases](https://github.com/LoveThemeFromTIGA/flog/releases/latest) according to your OS. Then, copy the unzipped executable to under system path.
 
 ### Using [docker](https://www.docker.com)
 
 ```
-docker run -it --rm mingrammer/flog
+docker run -it --rm lovethetiga/flog
 ```
 
 ## Usage

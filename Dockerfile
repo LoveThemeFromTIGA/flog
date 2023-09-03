@@ -2,6 +2,7 @@ FROM golang
 
 ENV CGO_ENABLED=0
 ENV GO111MODULE=on
+ENV GOPROXY=https://goproxy.io,direct
 
 WORKDIR /go/src/flog
 

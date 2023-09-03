@@ -1,4 +1,4 @@
-module github.com/mingrammer/flog
+module github.com/LoveThemeFromTIGA/flog
 
 go 1.14
 

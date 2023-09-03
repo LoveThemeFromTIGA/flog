@@ -145,8 +145,8 @@ func NewJSONLogFormat(t time.Time) string {
 		RandResourceURI(),
 		gofakeit.Number(0, 30000),
 		gofakeit.StatusCode(),
-		gofakeit.RandMillisecond(1, 200),
-		gofakeit.IPv4LanAddress()+":8080",
+		RandMillisecond(1, 200),
+		IPv4LanAddress()+":8080",
 		RandAuthUserID(),
 	)
 }

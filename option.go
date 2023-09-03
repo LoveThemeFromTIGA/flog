@@ -11,7 +11,7 @@ import (
 	"github.com/spf13/pflag"
 )
 
-const version = "0.4.3"
+const version = "0.4.4"
 const usage = `flog is a fake log generator for common log formats
 
 Usage: flog [options]
@@ -81,7 +81,7 @@ func errorExit(err error) {
 
 func defaultOptions() *Option {
 	return &Option{
-		Format:    "apache_common",
+		Format:    "json",
 		Output:    "generated.log",
 		Type:      "stdout",
 		Number:    1000,
